@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Internships & B.Tech Syllabus Resources</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #4834d4;
+            color: white;
+            padding: 30px 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        .tagline {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+        .search-bar {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .search-bar input {
+            padding: 12px;
+            width: 70%;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+            font-size: 16px;
+        }
+        .search-bar button {
+            padding: 12px 20px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .category {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #4834d4;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        .opportunity {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .opportunity:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        h3 {
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+        .tags {
+            margin-top: 10px;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #e0f7fa;
+            color: #00838f;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #4834d4;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #3721c4;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        .filter-btn {
+            background-color: #f0f0f0;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #4834d4;
+            color: white;
+        }
+        .deadline {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        .description {
+            margin: 10px 0;
+            color: #555;
+        }
+        @media (max-width: 768px) {
+            .search-bar input {
+                width: 60%;
+            }
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Internships & B.Tech Syllabus Hub</h1>
+        <p class="tagline">Discover internship opportunities and B.Tech course information all in one place!</p>
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Search for internships, courses...">
+            <button>Search</button>
+        </div>
+    </header>
+
+    <div class="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="internships">Internships</button>
+        <button class="filter-btn" data-filter="syllabus">B.Tech Syllabus</button>
+    </div>
+
+    <div id="all-content" class="content-section active">
+        <div class="category">
+            <h2>Featured Internship Opportunities</h2>
+            
+            <div class="opportunity">
+                <h3>Google Summer Internship Program</h3>
+                <div class="description">
+                    Work on real projects with Google engineering teams. Open to undergraduate and graduate students in Computer Science or related fields.
+                </div>
+                <div class="deadline">Application Deadline: December 15, 2025</div>
+                <div class="tags">
+                    <span class="tag">Software Engineering</span>
+                    <span class="tag">Paid</span>
+                    <span class="tag">12 Weeks</span>
+                </div>
+                <a href="#" class="btn">Apply Now</a>
+            </div>
+
+            <div class="opportunity">
+                <h3>Microsoft Explore Internship</h3>
+                <div class="description">
+                    A 12-week summer internship program specifically designed for first and second-year undergraduate students.
+                </div>
+                <div class="deadline">Applications Open: September 2025</div>
+                <div class="tags">
+                    <span class="tag">Early Students</span>
+                    <span class="tag">Rotational</span>
+                    <span class="tag">Mentorship</span>
+                </div>
+                <a href="#" class="btn">Set Reminder</a>
+            </div>
+        </div>
+
+        <div class="category">
+            <h2>Popular B.Tech Specializations</h2>
+            
+            <div class="opportunity">
+                <h3>Computer Science Engineering</h3>
+                <div class="description">
+                    Focus on programming, algorithms, artificial intelligence, machine learning, and software development.
+                </div>
+                <div class="tags">
+                    <span class="tag">High Demand</span>
+                    <span class="tag">Tech-focused</span>
+                    <span class="tag">Multiple Electives</span>
+                </div>
+                <a href="#" class="btn">View Full Syllabus</a>
+            </div>
+
+            <div class="opportunity">
+                <h3>Electrical Engineering</h3>
+                <div class="description">
+                    Study of electrical systems, electronics, power generation, control systems, and communication technologies.
+                </div>
+                <div class="tags">
+                    <span class="tag">Core Engineering</span>
+                    <span class="tag">Lab-intensive</span>
+                    <span class="tag">Industry Projects</span>
+                </div>
+                <a href="#" class="btn">Browse Courses</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="internships-content" class="content-section">
+        <div class="category">
+            <h2>Tech Industry Internships</h2>
+            
+            <div class="opportunity">
+                <h3>Google Summer Internship Program</h3>
+                <div class="description">
+                    Work on real projects with Google engineering teams. Open to undergraduate and graduate students in Computer Science or related fields.
+                </div>
+                <div class="deadline">Application Deadline: December 15, 2025</div>
+                <div class="tags">
+                    <span class="tag">Software Engineering</span>
+                    <span class="tag">Paid</span>
+                    <span class="tag">12 Weeks</span>
+                </div>
+                <a href="#" class="btn">Apply Now</a>
+            </div>
+
+            <div class="opportunity">
+                <h3>Microsoft Explore Internship</h3>
+                <div class="description">
+                    A 12-week summer internship program specifically designed for first and second-year undergraduate students.
+                </div>
+                <div class="deadline">Applications Open: September 2025</div>
+                <div class="tags">
+                    <span class="tag">Early Students</span>
+                    <span class="tag">Rotational</span>
+                    <span class="tag">Mentorship</span>
+                </div>
+                <a href="#" class="btn">Set Reminder</a>
+            </div>
+
+            <div class="opportunity">
+                <h3>Amazon SDE Internship</h3>
+                <div class="description">
+                    Join Amazon as a Software Development Engineer intern. Work on scalable, distributed systems while receiving mentorship.
+                </div>
+                <div class="deadline">Rolling Applications</div>
+                <div class="tags">
+                    <span class="tag">Backend</span>
+                    <span class="tag">Cloud Computing</span>
+                    <span class="tag">Well-paid</span>
+                </div>
+                <a href="#" class="btn">Learn More</a>
+            </div>
+        </div>
+
+        <div class="category">
+            <h2>Research & Development Internships</h2>
+            
+            <div class="opportunity">
+                <h3>ISRO Student Internship Program</h3>
+                <div class="description">
+                    Work on space technology research projects with the Indian Space Research Organization. Open to engineering students.
+                </div>
+                <div class="deadline">Applications Due: February 28, 2025</div>
+                <div class="tags">
+                    <span class="tag">Space Technology</span>
+                    <span class="tag">Government</span>
+                    <span class="tag">Research-focused</span>
+                </div>
+                <a href="#" class="btn">Check Eligibility</a>
+            </div>
+
+            <div class="opportunity">
+                <h3>Samsung R&D Institute Internship</h3>
+                <div class="description">
+                    Research-focused internships in fields like AI, IoT, mobile technologies, and semiconductors.
+                </div>
+                <div class="deadline">Next Batch: June 2025</div>
+                <div class="tags">
+                    <span class="tag">Advanced Tech</span>
+                    <span class="tag">Publication Potential</span>
+                    <span class="tag">Competitive</span>
+                </div>
+                <a href="#" class="btn">View Projects</a>
+            </div>
+        </div>
+
+        <div class="category">
+            <h2>Summer Training Programs</h2>
+            
+            <div class="opportunity">
+                <h3>IBM Global Summer Program</h3>
+                <div class="description">
+                    An 8-week program where students work on challenging business and technical problems in teams.
+                </div>
+                <div class="deadline">Registration Opens: January 2025</div>
+                <div class="tags">
+                    <span class="tag">Global Experience</span>
+                    <span class="tag">Team Projects</span>
+                    <span class="tag">Certificate</span>
+                </div>
+                <a href="#" class="btn">Program Details</a>
+            </div>
+
+            <div class="opportunity">
+                <h3>Intel Internship Program</h3>
+                <div class="description">
+                    Technical internships in chip design, validation, and AI optimization with practical industry exposure.
+                </div>
+                <div class="tags">
+                    <span class="tag">Hardware</span>
+                    <span class="tag">AI</span>
+                    <span class="tag">Global Opportunities</span>
+                </div>
+                <a href="#" class="btn">Apply Now</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="syllabus-content" class="content-section">
+        <div class="category">
+            <h2>Computer Science & Engineering</h2>
+            
+            <div class="opportunity">
+                <h3>First Year - Foundation</h3>
+                <div class="description">
+                    <strong>Semester 1:</strong> Engineering Mathematics I, Physics, Chemistry, Basic Electrical Engineering, Programming Fundamentals<br>
+                    <strong>Semester 2:</strong> Engineering Mathematics II, Engineering Mechanics, Basic Electronics, Engineering Graphics, Object-Oriented Programming
+                </div>
+                <div class="tags">
+                    <span class="tag">Common for All</span>
+                    <span class="tag">Foundation</span>
+                    <span class="tag">Core Subjects</span>
+                </div>
+                <a href="#" class="btn">View Book List</a>
+            </div>
+
+            <div class="opportunity">
+                <h3>Second Year - Core CS</h3>
+                <div class="description">
+                    <strong>Semester 3:</strong> Data Structures, Digital Logic Design, Discrete Mathematics, COA, Communication Skills<br>
+                    <strong>Semester 4:</strong> Algorithms, Operating Systems, Database Management Systems, Theory of Computation, Microprocessors
+                </div>
+                <div class="tags">
+                    <span class="tag">Specialization Begins</span>
+                    <span class="tag">Core CS</span>
+                    <span class="tag">Technical Subjects</span>
+                </div>
+                <a href="#" class="btn">View Practical Labs</a>
+            </div>
+
+            <div class="opportunity">
+                <h3>Third Year - Advanced Concepts</h3>
+                <div class="description">
+                    <strong>Semester 5:</strong> Computer Networks, Software Engineering, Web Technologies, Compiler Design, Elective I<br>
+                    <strong>Semester 6:</strong> AI & Machine Learning, Information Security, Cloud Computing, Elective II, Minor Project
+                </div>
+                <div class="tags">
+                    <span class="tag">Specialization</span>
+                    <span class="tag">Electives</span>
+                    <span class="tag">Projects Begin</span>
+                </div>
+                <a href="#" class="btn">View Electives</a>
+            </div>
+
+            <div class="opportunity">
+                <h3>Fourth Year - Specialization & Projects</h3>
+                <div class="description">
+                    <strong>Semester 7:</strong> Big Data Analytics, Mobile Application Development, Elective III, Elective IV, Major Project I<br>
+                    <strong>Semester 8:</strong> Industry Internship, Major Project II, Comprehensive Viva
+                </div>
+                <div class="tags">
+                    <span class="tag">Industry Ready</span>
+                    <span class="tag">Major Project</span>
+                    <span class="tag">Internship</span>
+                </div>
+                <a href="#" class="btn">Download Full Syllabus</a>
+            </div>
+        </div>
+
+        <div class="category">
+            <h2>Electrical Engineering</h2>
+            
+            <div class="opportunity">
+                <h3>First Year - Foundation</h3>
+                <div class="description">
+                    <strong>Semester 1:</strong> Engineering Mathematics I, Physics, Chemistry, Basic Electrical Engineering, Programming Fundamentals<br>
+                    <strong>Semester 2:</strong> Engineering Mathematics II, Engineering Mechanics, Basic Electronics, Engineering Graphics, Workshop Practice
+                </div>
+                <div class="tags">
+                    <span class="tag">Common for All</span>
+                    <span class="tag">Foundation</span>
+                    <span class="tag">Core Subjects</span>
+                </div>
+                <a href="#" class="btn">View Book List</a>
+            </div>
+
+            <div class="opportunity">
+                <h3>Second Year - Core EE</h3>
+                <div class="description">
+                    <strong>Semester 3:</strong> Circuit Theory, Electronics Devices, Digital Electronics, Electrical Measurements, Electromagnetic Fields<br>
+                    <strong>Semester 4:</strong> Power Systems, Control Systems, Analog Electronics, Signals & Systems, Electrical Machines I
+                </div>
+                <div class="tags">
+                    <span class="tag">Specialization Begins</span>
+                    <span class="tag">Core EE</span>
+                    <span class="tag">Technical Subjects</span>
+                </div>
+                <a href="#" class="btn">View Practical Labs</a>
+            </div>
+
+            <div class="opportunity">
+                <h3>Third Year - Advanced Concepts</h3>
+                <div class="description">
+                    <strong>Semester 5:</strong> Power Electronics, Microprocessors & Microcontrollers, Electrical Machines II, Communication Engineering, Elective I<br>
+                    <strong>Semester 6:</strong> Power System Protection, Industrial Drives, Renewable Energy Systems, Elective II, Minor Project
+                </div>
+                <div class="tags">
+                    <span class="tag">Specialization</span>
+                    <span class="tag">Electives</span>
+                    <span class="tag">Projects Begin</span>
+                </div>
+                <a href="#" class="btn">View Electives</a>
+            </div>
+
+            <div class="opportunity">
+                <h3>Fourth Year - Specialization & Projects</h3>
+                <div class="description">
+                    <strong>Semester 7:</strong> High Voltage Engineering, Power System Operation, Elective III, Elective IV, Major Project I<br>
+                    <strong>Semester 8:</strong> Industry Internship, Major Project II, Comprehensive Viva
+                </div>
+                <div class="tags">
+                    <span class="tag">Industry Ready</span>
+                    <span class="tag">Major Project</span>
+                    <span class="tag">Internship</span>
+                </div>
+                <a href="#" class="btn">Download Full Syllabus</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Stay updated with the latest internship opportunities and course information for engineering students!</p>
+        <p>Last Updated: April 2025</p>
+    </footer>
+
+    <script>
+        // Enhanced filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const allContent = document.getElementById('all-content');
+        const internshipsContent = document.getElementById('internships-content');
+        const syllabusContent = document.getElementById('syllabus-content');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Hide all content sections
+                document.querySelectorAll('.content-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Show selected content section
+                const filter = this.getAttribute('data-filter');
+                if (filter === 'all') {
+                    allContent.classList.add('active');
+                } else if (filter === 'internships') {
+                    internshipsContent.classList.add('active');
+                } else if (filter === 'syllabus') {
+                    syllabusContent.classList.add('active');
+                }
+            });
+        });
+
+        // Enhanced search functionality
+        const searchButton = document.querySelector('.search-bar button');
+        searchButton.addEventListener('click', function() {
+            const searchInput = document.querySelector('.search-bar input').value.toLowerCase();
+            
+            // Simple search functionality - highlight matching opportunities
+            const opportunities = document.querySelectorAll('.opportunity');
+            
+            opportunities.forEach(opportunity => {
+                const text = opportunity.textContent.toLowerCase();
+                if (text.includes(searchInput)) {
+                    opportunity.style.backgroundColor = '#f9f3d2';
+                    setTimeout(() => {
+                        opportunity.style.backgroundColor = '';
+                    }, 3000);
+                }
+            });
+            
+            if (searchInput) {
+                alert('Highlighting matching results for: ' + searchInput);
+            }
+        });
+    </script>
+</body>
+</html>

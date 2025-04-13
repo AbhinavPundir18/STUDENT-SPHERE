@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Hindi Vocabulary</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #FF9933;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 5px solid #138808;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+        }
+        
+        header p {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+        
+        .word-categories {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .category-btn {
+            background-color: #ffffff;
+            border: 2px solid #138808;
+            color: #333;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .category-btn:hover {
+            background-color: #138808;
+            color: white;
+        }
+        
+        .category-btn.active {
+            background-color: #138808;
+            color: white;
+        }
+        
+        .word-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .word-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .word-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .word-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .hindi {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #FF9933;
+        }
+        
+        .transliteration {
+            font-style: italic;
+            color: #666;
+            margin: 5px 0;
+        }
+        
+        .english {
+            font-weight: bold;
+        }
+        
+        .pronunciation-btn {
+            background-color: #138808;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        
+        .practice-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .practice-card {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .option-btn {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .option-btn:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .result {
+            margin-top: 15px;
+            font-weight: bold;
+            min-height: 20px;
+        }
+        
+        .correct {
+            color: #138808;
+        }
+        
+        .incorrect {
+            color: #FF0000;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px 0;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .word-list {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .word-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>हिंदी शब्द सीखें</h1>
+        <p>Learn Hindi Words</p>
+    </header>
+    
+    <div class="container">
+        <div class="word-categories">
+            <button class="category-btn active" onclick="changeCategory('greetings')">Greetings</button>
+            <button class="category-btn" onclick="changeCategory('numbers')">Numbers</button>
+            <button class="category-btn" onclick="changeCategory('colors')">Colors</button>
+            <button class="category-btn" onclick="changeCategory('family')">Family</button>
+            <button class="category-btn" onclick="changeCategory('food')">Food</button>
+        </div>
+        
+        <div class="word-section">
+            <h2 id="current-category">Greetings</h2>
+            <div class="word-list" id="word-list">
+                <!-- Words will be added dynamically -->
+            </div>
+        </div>
+        
+        <div class="practice-section">
+            <h2>Practice</h2>
+            <div class="practice-card">
+                <div class="hindi" id="practice-hindi">नमस्ते</div>
+                <div class="transliteration" id="practice-transliteration">namaste</div>
+                <p>What does this word mean?</p>
+                <div class="options" id="options">
+                    <!-- Options will be added dynamically -->
+                </div>
+                <div class="result" id="result"></div>
+                <button class="pronunciation-btn" onclick="nextPractice()">Next Word</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Created for new Hindi learners | © 2025</p>
+    </footer>
+
+    <script>
+        // Hindi vocabulary data
+        const vocabularyData = {
+            greetings: [
+                { hindi: "नमस्ते", transliteration: "namaste", english: "Hello / Greetings" },
+                { hindi: "धन्यवाद", transliteration: "dhanyavaad", english: "Thank you" },
+                { hindi: "हाँ", transliteration: "haan", english: "Yes" },
+                { hindi: "नहीं", transliteration: "nahin", english: "No" },
+                { hindi: "क्षमा करें", transliteration: "kshama karen", english: "Excuse me / Sorry" },
+                { hindi: "शुभ प्रभात", transliteration: "shubh prabhaat", english: "Good morning" },
+                { hindi: "शुभ रात्रि", transliteration: "shubh raatri", english: "Good night" },
+                { hindi: "फिर मिलेंगे", transliteration: "phir milenge", english: "See you later" }
+            ],
+            numbers: [
+                { hindi: "एक", transliteration: "ek", english: "One" },
+                { hindi: "दो", transliteration: "do", english: "Two" },
+                { hindi: "तीन", transliteration: "teen", english: "Three" },
+                { hindi: "चार", transliteration: "chaar", english: "Four" },
+                { hindi: "पाँच", transliteration: "paanch", english: "Five" },
+                { hindi: "छः", transliteration: "chhah", english: "Six" },
+                { hindi: "सात", transliteration: "saat", english: "Seven" },
+                { hindi: "आठ", transliteration: "aath", english: "Eight" }
+            ],
+            colors: [
+                { hindi: "लाल", transliteration: "laal", english: "Red" },
+                { hindi: "नीला", transliteration: "neela", english: "Blue" },
+                { hindi: "हरा", transliteration: "hara", english: "Green" },
+                { hindi: "पीला", transliteration: "peela", english: "Yellow" },
+                { hindi: "काला", transliteration: "kaala", english: "Black" },
+                { hindi: "सफेद", transliteration: "safed", english: "White" },
+                { hindi: "नारंगी", transliteration: "naarangi", english: "Orange" },
+                { hindi: "बैंगनी", transliteration: "baingani", english: "Purple" }
+            ],
+            family: [
+                { hindi: "माता", transliteration: "maata", english: "Mother" },
+                { hindi: "पिता", transliteration: "pita", english: "Father" },
+                { hindi: "भाई", transliteration: "bhai", english: "Brother" },
+                { hindi: "बहन", transliteration: "bahan", english: "Sister" },
+                { hindi: "दादा", transliteration: "dada", english: "Grandfather" },
+                { hindi: "दादी", transliteration: "dadi", english: "Grandmother" },
+                { hindi: "चाचा", transliteration: "chacha", english: "Uncle" },
+                { hindi: "चाची", transliteration: "chachi", english: "Aunt" }
+            ],
+            food: [
+                { hindi: "चावल", transliteration: "chawal", english: "Rice" },
+                { hindi: "रोटी", transliteration: "roti", english: "Bread" },
+                { hindi: "दाल", transliteration: "daal", english: "Lentils" },
+                { hindi: "सब्जी", transliteration: "sabzi", english: "Vegetables" },
+                { hindi: "पानी", transliteration: "paani", english: "Water" },
+                { hindi: "चाय", transliteration: "chai", english: "Tea" },
+                { hindi: "दूध", transliteration: "doodh", english: "Milk" },
+                { hindi: "मिठाई", transliteration: "mithai", english: "Sweet" }
+            ]
+        };
+        
+        let currentCategory = 'greetings';
+        let currentPracticeWord = {};
+        
+        // Initialize the page
+        function init() {
+            displayWords(currentCategory);
+            setupPractice(currentCategory);
+        }
+        
+        // Display words for a category
+        function displayWords(category) {
+            const wordList = document.getElementById('word-list');
+            wordList.innerHTML = '';
+            
+            vocabularyData[category].forEach(word => {
+                const wordCard = document.createElement('div');
+                wordCard.className = 'word-card';
+                wordCard.innerHTML = `
+                    <div class="hindi">${word.hindi}</div>
+                    <div class="transliteration">${word.transliteration}</div>
+                    <div class="english">${word.english}</div>
+                    <button class="pronunciation-btn" onclick="speak('${word.hindi}', '${word.transliteration}')">
+                        Pronounce
+                    </button>
+                `;
+                wordList.appendChild(wordCard);
+            });
+        }
+        
+        // Change the category
+        function changeCategory(category) {
+            currentCategory = category;
+            document.getElementById('current-category').textContent = 
+                category.charAt(0).toUpperCase() + category.slice(1);
+            
+            // Update active button
+            const buttons = document.querySelectorAll('.category-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase() === category) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            displayWords(category);
+            setupPractice(category);
+        }
+        
+        // Text to speech function (basic implementation)
+        function speak(text, transliteration) {
+            // Using browser's speech synthesis if available
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'hi-IN';  // Hindi language
+                speechSynthesis.speak(utterance);
+            } else {
+                alert("Sorry, your browser doesn't support text to speech! Try saying: " + transliteration);
+            }
+        }
+        
+        // Setup practice section
+        function setupPractice(category) {
+            const words = vocabularyData[category];
+            const randomIndex = Math.floor(Math.random() * words.length);
+            currentPracticeWord = words[randomIndex];
+            
+            document.getElementById('practice-hindi').textContent = currentPracticeWord.hindi;
+            document.getElementById('practice-transliteration').textContent = currentPracticeWord.transliteration;
+            
+            const options = document.getElementById('options');
+            options.innerHTML = '';
+            
+            // Create a set of options including the correct answer
+            const allOptions = [...words];
+            const shuffledOptions = shuffleArray(allOptions).slice(0, 4);
+            
+            // Make sure the correct answer is included
+            if (!shuffledOptions.some(word => word.english === currentPracticeWord.english)) {
+                shuffledOptions[0] = currentPracticeWord;
+            }
+            
+            // Shuffle again to randomize position
+            const finalOptions = shuffleArray(shuffledOptions);
+            
+            finalOptions.forEach(option => {
+                const optionBtn = document.createElement('button');
+                optionBtn.className = 'option-btn';
+                optionBtn.textContent = option.english;
+                optionBtn.onclick = function() {
+                    checkAnswer(option.english === currentPracticeWord.english);
+                };
+                options.appendChild(optionBtn);
+            });
+            
+            // Clear previous result
+            document.getElementById('result').textContent = '';
+            document.getElementById('result').className = 'result';
+        }
+        
+        // Check the answer
+        function checkAnswer(isCorrect) {
+            const resultElement = document.getElementById('result');
+            if (isCorrect) {
+                resultElement.textContent = 'Correct! Well done.';
+                resultElement.className = 'result correct';
+            } else {
+                resultElement.textContent = `Incorrect. The answer is "${currentPracticeWord.english}".`;
+                resultElement.className = 'result incorrect';
+            }
+            
+            // Disable all option buttons
+            const options = document.querySelectorAll('.option-btn');
+            options.forEach(btn => {
+                btn.disabled = true;
+                if (btn.textContent === currentPracticeWord.english) {
+                    btn.style.backgroundColor = '#d4edda';
+                    btn.style.borderColor = '#c3e6cb';
+                }
+            });
+        }
+        
+        // Move to next practice word
+        function nextPractice() {
+            setupPractice(currentCategory);
+        }
+        
+        // Utility function to shuffle an array
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+        
+        // Initialize the page when loaded
+        window.onload = init;
+    </script>
+</body>
+</html>

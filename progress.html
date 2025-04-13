@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(335deg, #fdfcfe, #bca4ed);
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #fff;
+            color: #333;
+            max-width: 500px;
+            width: 100%;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #6a11cb;
+        }
+        input[type="text"] {
+            width: calc(100% - 50px);
+            padding: 10px;
+            border: 2px solid #6a11cb;
+            border-radius: 5px;
+            outline: none;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        button {
+            background: #6a11cb;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #2575fc;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            background: #f4f4f4;
+            color: #333;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+        li:hover {
+            transform: scale(1.02);
+        }
+        li.completed {
+            text-decoration: line-through;
+            color: gray;
+            background: #e0e0e0;
+        }
+        li button {
+            background: #ff4d4d;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+        li button:hover {
+            background: #ff1a1a;
+        }
+        #progressReport {
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+        #progressBar {
+            width: 100%;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        #progressBar div {
+            height: 10px;
+            background: #6a11cb;
+            width: 0;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <input type="text" id="taskInput" placeholder="Add a new task...">
+        <button id="addTaskBtn">Add Task</button>
+        <ul id="taskList"></ul>
+        <div id="progressReport">
+            <p>Progress: <span id="progressPercentage">0</span>%</p>
+            <div id="progressBar">
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('addTaskBtn').addEventListener('click', addTask);
+
+        let tasks = [];
+
+        function addTask() {
+            const taskInput = document.getElementById('taskInput');
+            const taskText = taskInput.value.trim();
+
+            if (taskText) {
+                const task = {
+                    text: taskText,
+                    completed: false
+                };
+                tasks.push(task);
+                taskInput.value = '';
+                renderTasks();
+            }
+        }
+
+        function renderTasks() {
+            const taskList = document.getElementById('taskList');
+            taskList.innerHTML = '';
+
+            tasks.forEach((task, index) => {
+                const li = document.createElement('li');
+                li.className = task.completed ? 'completed' : '';
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.checked = task.completed;
+                checkbox.addEventListener('change', () => toggleTaskCompletion(index));
+
+                const span = document.createElement('span');
+                span.textContent = task.text;
+
+                const removeBtn = document.createElement('button');
+                removeBtn.textContent = 'Remove';
+                removeBtn.addEventListener('click', () => removeTask(index));
+
+                li.appendChild(checkbox);
+                li.appendChild(span);
+                li.appendChild(removeBtn);
+                taskList.appendChild(li);
+            });
+
+            updateProgressReport();
+        }
+
+        function toggleTaskCompletion(index) {
+            tasks[index].completed = !tasks[index].completed;
+            renderTasks();
+        }
+
+        function removeTask(index) {
+            tasks.splice(index, 1);
+            renderTasks();
+        }
+
+        function updateProgressReport() {
+            const totalTasks = tasks.length;
+            const completedTasks = tasks.filter(task => task.completed).length;
+            const progressPercentage = totalTasks ? Math.round((completedTasks / totalTasks) * 100) : 0;
+
+            document.getElementById('progressPercentage').textContent = progressPercentage;
+            document.getElementById('progressBar').firstElementChild.style.width = progressPercentage + '%';
+        }
+    </script>
+</body>
+</html>
